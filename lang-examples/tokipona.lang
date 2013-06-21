@@ -1,0 +1,40 @@
+# This is a configuration file for generating words
+# using multiple symbols and their particular probability.
+
+#
+#  Toki pona phonology example
+#       http://en.wikipedia.org/wiki/Toki_Pona
+#
+
+symbols for a vowel:
+   a: 50
+   e: 60
+   i: 40
+   o: 45
+   u: 40
+
+symbols for any constant:
+   p: 42
+   t: 44
+   k: 33
+   m: 37
+   n: 35
+   s: 40
+   l: 50
+
+symbols for each diphthong:
+   ja: 8
+   je: 7
+   jo: 5
+   wa: 6
+   we: 7
+      
+
+symbols for coda:
+   n: 40
+
+expression:
+   or(80, maybe(70, constant) + vowel + maybe(10, coda), 
+          diphthong)
+   + maybe(75, or(80, constant + vowel + maybe(10, coda), 
+                      diphthong)) 

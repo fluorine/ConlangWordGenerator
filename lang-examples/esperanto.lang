@@ -1,0 +1,91 @@
+# This is a configuration file for generating words
+# using multiple symbols and their particular probability.
+
+#
+#  Esperanto phonology sheet
+#       http://en.wikipedia.org/wiki/Esperanto
+#
+
+symbols for a vowel:
+   a: 50
+   e: 50
+   i: 40
+   o: 50
+   u: 40
+
+symbols for any constant:
+   p: 42
+   b: 50
+   t: 44
+   d: 40
+   k: 33
+   g: 40
+   m: 37
+   n: 35
+   s: 40
+   z: 35
+   l: 50
+   r: 25
+   f: 40
+   v: 41
+   h: 20
+   c: 35
+   cx: 43
+   gx: 37
+   hx: 15
+   jx: 23
+   sx: 35
+
+
+symbols for each diphthong:
+   ja: 8
+   je: 7
+   jo: 5
+   ju: 6
+      
+
+symbols for word_term:
+   as:  30
+   os:  32
+   is:  36
+   o:   60
+   on:  45
+   ojn: 20
+   a:   50
+   u:   20
+   e:   25
+   an:  15
+   ajn: 5
+   i:   10
+
+symbols for increasing_diphthong:
+   ja: 50
+   je: 40
+   jo: 60
+   ju: 30
+#   wa: 20
+#   we: 25
+
+symbols for decreasing_diphthong:
+   aj: 10 
+   ej: 15
+   oj: 7
+   aw: 7
+   ew: 5
+
+symbols for internal coda:
+   n: 20
+   s: 30
+   l: 15
+
+
+expression:
+   maybe(30, maybe(40, vowel) 
+   + or(85, constant + vowel, 
+            increasing_diphthong) 
+   + maybe(20, coda)) 
+   + maybe(80, or(85, constant + vowel, 
+                      increasing_diphthong) 
+               + maybe(20, coda)) 
+   + constant 
+   + word_term
