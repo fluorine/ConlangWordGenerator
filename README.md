@@ -15,8 +15,7 @@ Usage:
 
 	ruby generator.rb <quantity> "<file_name>.lang"
 
-This command generates a list of words on the
-file "output-<file-name>.txt"
+This command generates a list of words on the file "output-[file-name].txt"
 
 Example
 -------
