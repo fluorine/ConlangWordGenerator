@@ -1,4 +1,5 @@
-# ConlangWordGenerator, 0.1 beta.
+ConlangWordGenerator, 0.1.2 beta.
+=================================
 
 Description
 -----------

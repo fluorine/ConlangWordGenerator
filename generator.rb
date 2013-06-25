@@ -2,6 +2,7 @@
 
 load 'symbolset.rb'
 
+#
 # This Ruby script generates random words using prabability-weighted symbols,
 # and grammar rules from a given .lang file as input.
 #
@@ -9,10 +10,26 @@ class LangInterpreter
   # Constructor
   def initialize(lang_file, words_count = 30)
     # Check file extension.
-    raise "File \"#{lang_file}\" is not a .lang file" unless lang_file.match(/.*\.lang/)
+    unless lang_file.match(/.*\.lang/)
+      puts "File \"#{lang_file}\" is not a .lang file" 
+      exit()
+    end
 
     # Check if files exist
-    raise "File \"#{lang_file}\" was not found." unless File.exist?(lang_file)
+    unless File.exist?(lang_file)
+      puts "File \"#{lang_file}\" was not found." 
+      exit()
+    end
+
+    # Chenck if correct quantity of words.
+    unless words_count > 0
+      puts "Error in quantity of words at first parameter.\n" + 
+           "An integer greater than 0 is requiered."
+    end
+
+    #   #   #   #   #   #   #   #   #
+
+    # Input filename
     @lang_file = lang_file
 
     # Default output file name
@@ -55,7 +72,6 @@ class LangInterpreter
         when /^\s*symbols\s*for\s*(\w*)?\s*(\w*)\s*:\s*(#.*)?$/
           # Create new symbol set
           captured = line.scan(/\s*(\w*)\s*:/)
-          #p captured[0][0]
           current_binding = captured[0][0]
           @bindings[current_binding] = SymbolSet.new
 
@@ -75,7 +91,7 @@ class LangInterpreter
           else
             puts "Runtime error when evaluating " +
                  "\"#{@lang_file}\" at line #{lines_count}."
-            break
+            exit()
           end
         end
 
@@ -85,8 +101,8 @@ class LangInterpreter
     end
   end
 
-  # This method evaluates the grammatical expression to construct
-  # a grammatical tree and generate random words.
+  # This method evaluates the grammatical expression
+  # and then generate random words.
   def eval_expression
     load 'expr_interpreter.rb'
 
@@ -96,8 +112,7 @@ class LangInterpreter
   # This method generates the output file.
   def generate_output_file
     File.open(@output_file, 'w') do |file|  
-      # use "\n" for two lines of text  
-
+      # Get words
       @words_count.times do 
         file.puts  @evaluated_expression.sample + "\n"
       end
@@ -108,5 +123,16 @@ class LangInterpreter
 end
 
 
-#Parse .lang file (filename, count)
-instance = LangInterpreter.new(ARGV[1], ARGV[0])
+#   #   #   #   #   #   #   #   #   #   #
+
+# Entry point
+unless ARGV.length == 2
+  # Print usage instruction, if incorrect quantity of commands
+  puts "Usage:\n   ruby generator.rb <quantity> \"<file_name>.lang\""
+else
+  #Parse .lang file  (filename,  count)
+  LangInterpreter.new(ARGV[1], ARGV[0])
+end
+
+
+
