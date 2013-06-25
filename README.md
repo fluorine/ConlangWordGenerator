@@ -6,9 +6,11 @@ Description
 This script takes a .lang file to generate random words for
 constructed languages evaluating a regular grammar expression.
 
-The .lang file must be a collection of phonemes with 
-their probability weight, and a grammatical expression 
-to generate words.
+The .lang file is a little markup languages that must contain
+a collection of phonemes with their probability weight, 
+and a grammatical expression to generate words.
+
+You don't need to know programming to write .lang files!
 
 Instructions
 ------------
@@ -16,8 +18,7 @@ Usage:
 
 	ruby generator.rb <quantity> "<file_name>.lang"
 
-This command generates a list of words on the
-file "output-<file-name>.txt"
+This command generates a list of words on the file "output-[file-name].txt"
 
 Example
 -------
