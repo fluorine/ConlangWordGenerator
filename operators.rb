@@ -85,10 +85,25 @@ end
 # Functions for operators
 #
 
-def Or(weight, setA, setB)
-  Or.new(weight, setA, setB)
+def Or(*args)
+  if args.length == 2
+    Or.new(50, args[0], args[1])
+  elsif args.length == 3
+    Or.new(args[0].to_i, args[1], args[2])
+  else
+    puts "Error evaluating an Or() expression."
+    exit
+  end
 end
 
-def Maybe(weight, set)
-  Maybe.new(weight, set)
+def Maybe(*args)
+  if args.length == 1
+    Maybe.new(50, args[0]) 
+  elsif args.length == 2
+    Maybe.new(args[0].to_i, args[1])
+  else
+    puts "Error evaluating Maybe() expression."
+    exit
+  end
 end
+

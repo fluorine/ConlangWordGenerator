@@ -53,23 +53,23 @@ the next line, after:
 An expression is composed of operators that
 may be nested.
 
-**Maybe(weight, A)**: A symbol from the **A**
-SymbolSet may appear or not (empty string).
-The weight states the possibility of **A**
-to appear.
+ * **Maybe(weight, A)**: A symbol from the **A**
+   SymbolSet may appear or not (empty string).
+   The weight states the possibility of **A**
+   to appear.
 
-**Or(weight, A, B)**: A symbol from SymbolSet
-A or B may appear. The weight specifies the
-possibility of a symbol from **A** for
-appearing, and the complement (100 - A) must
-be the possibility of a symbol from **B**
-to appear.
+ * **Maybe(A)**: Same previous operator, but with default
+   50 weight.
 
-A **+** B: The plus sign to append A and
-B results.
+ * **Or(weight, A, B)**: A symbol from SymbolSet
+   A or B may appear. The weight specifies the
+   possibility of a symbol from **A** for
+   appearing, and the complement (100 - A) must
+   be the possibility of a symbol from **B**
+   to appear.
 
-TODO
-----
-* Support of UTF-8 symbols
-* Grammatical exceptions, or replacements
-* More operators
+  * **Or(A, B)**: Same previous operator, but with default
+   50 weight.
+
+ * A **+** B: The plus sign to append A and
+   B results.

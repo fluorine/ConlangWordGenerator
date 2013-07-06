@@ -12,13 +12,13 @@ class LangInterpreter
     # Check file extension.
     unless lang_file.match(/.*\.lang/)
       puts "File \"#{lang_file}\" is not a .lang file" 
-      exit()
+      exit
     end
 
     # Check if files exist
     unless File.exist?(lang_file)
       puts "File \"#{lang_file}\" was not found." 
-      exit()
+      exit
     end
 
     # Chenck if correct quantity of words.
@@ -69,9 +69,9 @@ class LangInterpreter
         case line
         when /(^\s*$)|(^\s*#.*$)/
           # Ignore blank lines or comments
-        when /^\s*symbols\s*for\s*(\w*)?\s*(\w*)\s*:\s*(#.*)?$/
+        when /^\s*symbols\s*for\s*(\w*)?\s*(\w+)\s*:\s*(#.*)?$/
           # Create new symbol set
-          captured = line.scan(/\s*(\w*)\s*:/)
+          captured = line.scan(/\s*(\w+)\s*:/)
           current_binding = captured[0][0]
           @bindings[current_binding] = SymbolSet.new
 
@@ -80,7 +80,7 @@ class LangInterpreter
           #puts "Evaluating expression:"
           on_expression = true
 
-        when /^\s*(\w*)\s*[:=]\s*(\d*)\s*(#.*)?$/
+        when /^\s*(\S+)\s*[:=]\s*(\d*)\s*(#.*)?$/
           # Add a symbol to the last binding
           @bindings[current_binding].add_pair($1, $2.to_i)
 
@@ -91,7 +91,7 @@ class LangInterpreter
           else
             puts "Runtime error when evaluating " +
                  "\"#{@lang_file}\" at line #{lines_count}."
-            exit()
+            exit
           end
         end
 
@@ -131,8 +131,6 @@ unless ARGV.length == 2
   puts "Usage:\n   ruby generator.rb <quantity> \"<file_name>.lang\""
 else
   #Parse .lang file  (filename,  count)
-  LangInterpreter.new(ARGV[1], ARGV[0])
+  LangInterpreter.new(ARGV[1], ARGV[0].to_i)
 end
-
-
 
