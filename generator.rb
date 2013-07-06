@@ -69,9 +69,9 @@ class LangInterpreter
         case line
         when /(^\s*$)|(^\s*#.*$)/
           # Ignore blank lines or comments
-        when /^\s*symbols\s*for\s*(\w*)?\s*(\w*)\s*:\s*(#.*)?$/
+        when /^\s*symbols\s*for\s*(\w*)?\s*(\w+)\s*:\s*(#.*)?$/
           # Create new symbol set
-          captured = line.scan(/\s*(\w*)\s*:/)
+          captured = line.scan(/\s*(\w+)\s*:/)
           current_binding = captured[0][0]
           @bindings[current_binding] = SymbolSet.new
 
@@ -80,7 +80,7 @@ class LangInterpreter
           #puts "Evaluating expression:"
           on_expression = true
 
-        when /^\s*(\S*)\s*[:=]\s*(\d*)\s*(#.*)?$/
+        when /^\s*(\S+)\s*[:=]\s*(\d*)\s*(#.*)?$/
           # Add a symbol to the last binding
           @bindings[current_binding].add_pair($1, $2.to_i)
 
