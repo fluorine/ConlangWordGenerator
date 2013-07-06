@@ -12,13 +12,13 @@ class LangInterpreter
     # Check file extension.
     unless lang_file.match(/.*\.lang/)
       puts "File \"#{lang_file}\" is not a .lang file" 
-      exit()
+      exit
     end
 
     # Check if files exist
     unless File.exist?(lang_file)
       puts "File \"#{lang_file}\" was not found." 
-      exit()
+      exit
     end
 
     # Chenck if correct quantity of words.

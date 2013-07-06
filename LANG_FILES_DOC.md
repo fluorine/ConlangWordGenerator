@@ -58,7 +58,7 @@ may be nested.
    The weight states the possibility of **A**
    to appear.
 
- * **Maybe(A)**: Same operator, but with default
+ * **Maybe(A)**: Same previous operator, but with default
    50 weight.
 
  * **Or(weight, A, B)**: A symbol from SymbolSet
@@ -67,6 +67,9 @@ may be nested.
    appearing, and the complement (100 - A) must
    be the possibility of a symbol from **B**
    to appear.
+
+  * **Or(A, B)**: Same previous operator, but with default
+   50 weight.
 
  * A **+** B: The plus sign to append A and
    B results.
