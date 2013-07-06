@@ -58,6 +58,9 @@ may be nested.
    The weight states the possibility of **A**
    to appear.
 
+ * **Maybe(A)**: Same operator, but with default
+   50 weight.
+
  * **Or(weight, A, B)**: A symbol from SymbolSet
    A or B may appear. The weight specifies the
    possibility of a symbol from **A** for
