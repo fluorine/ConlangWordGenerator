@@ -7,4 +7,4 @@ TODO
 Implemented features
 ====================
  * Maybe(A) operator (no weight is requiered,
-   default probability is 0.5)
+   default probability is 50)
