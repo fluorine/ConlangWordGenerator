@@ -131,8 +131,6 @@ unless ARGV.length == 2
   puts "Usage:\n   ruby generator.rb <quantity> \"<file_name>.lang\""
 else
   #Parse .lang file  (filename,  count)
-  LangInterpreter.new(ARGV[1], ARGV[0])
+  LangInterpreter.new(ARGV[1], ARGV[0].to_i)
 end
-
-
 

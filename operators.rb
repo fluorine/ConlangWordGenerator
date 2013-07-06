@@ -86,9 +86,14 @@ end
 #
 
 def Or(weight, setA, setB)
-  Or.new(weight, setA, setB)
+  return Or.new(weight, setA, setB)
 end
 
-def Maybe(weight, set)
-  Maybe.new(weight, set)
+def Maybe(*args)
+  if args.length == 1
+    Maybe.new(50, args[0]) 
+  else
+    Maybe.new(args[0].to_i, args[1])
+  end
 end
+
