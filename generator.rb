@@ -80,7 +80,7 @@ class LangInterpreter
           #puts "Evaluating expression:"
           on_expression = true
 
-        when /^\s*(\w*)\s*[:=]\s*(\d*)\s*(#.*)?$/
+        when /^\s*(\S*)\s*[:=]\s*(\d*)\s*(#.*)?$/
           # Add a symbol to the last binding
           @bindings[current_binding].add_pair($1, $2.to_i)
 
@@ -91,7 +91,7 @@ class LangInterpreter
           else
             puts "Runtime error when evaluating " +
                  "\"#{@lang_file}\" at line #{lines_count}."
-            exit()
+            exit
           end
         end
 
