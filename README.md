@@ -1,53 +1,49 @@
-ConlangWordGenerator, 0.1.3 beta.
+ConlangWordGenerator, 0.2.0 beta.
 =================================
+**Now it's a gem!**
 
 Description
 -----------
-This script takes a .lang file to generate random words for
-constructed languages evaluating a regular grammar expression.
+This gem allows the user to generate words for
+constructed languages, given a LANG file that
+describes the language. It can also be useful
+for linguistics to study and generate words from
+a given language.
 
-The .lang file must be a collection of phonemes with 
-their probability weight, and a grammatical expression 
-to generate words.
+The `*.lang` file must include sets of phonemes with 
+their individual probability weight, and a grammatical
+expression, to describe how to generate words for the
+described language.
 
 Instructions
 ------------
 Usage:
 
-	ruby generator.rb <quantity> "<file_name>.lang"
+	require 'conlang'
 
-This command generates a list of words on the
-file "output-<file-name>.txt"
+	# Path to LANG file, as constructor.
+	 x = WordGenerator.new("tokipona.lang")
 
-Example
--------
-The "tokipona.lang" file must be at root.
+	# Print ten generated words as
+	# an array of strings.
+	 p x.get_words(10)
 
-This command generates 7 Tokipona-like words:
 
-	ruby generator.rb 7 "tokipona.lang"
-
-The output-tokipona.txt file will include 7 
-tokipona-like words:
-
-	pison
-	se
-	nala
-	pose
-	lopi
-	o
-	ele
-
-There are other example .lang files at "lang-examples" 
-directory.
+There are `*.lang` files as examples at `lang-examples` 
+directory of this [project's source](https://github.com/fluorine/ConlangWordGenerator).
 
 Custom .lang files
 ------------------
-You must create your own .lang files to generate
-random words for your constructed languages.
+You must create your own .lang files to generate random 
+words for your constructed languages.
 
-It's a simple syntax to describe phonemes, 
-their probability and a simple regular grammatical
-expression to generate words.
+There files include a simple lightweight markup language
+to describe sets of phonemes, their probability, and a 
+simple regular grammatical expression.
 
-Examples can help you.
+You can learn how to create LANG files [**here**](LANG_FILES_DOC.md).
+Again, examples at `lang-examples` directory can help you a lot.
+
+The class `WordGenerator` takes a path to a valid `*.lang`
+file to produce a generator of words, as described previously
+in the **Instructions** section.
