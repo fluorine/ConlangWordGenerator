@@ -1,0 +1,14 @@
+# Thest LANG file for OR operators.
+
+symbols for a vowel:
+   a: 50
+   o: 50
+
+symbols for any constant:
+   p: 33
+   t: 33
+   k: 33      
+
+expression:
+# Pattern: /[aoptk][ao]/
+   or(constant, vowel) + or(10, vowel, vowel)

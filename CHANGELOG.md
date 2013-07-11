@@ -10,3 +10,4 @@ Implemented features
    default probability is 50)
  * Or(A, b) operator (no wight is requiered,
    default probability is 50)
+ * Published as a Ruby gem
