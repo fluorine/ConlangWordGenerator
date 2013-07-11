@@ -125,8 +125,8 @@ module ConlangWordGenerator
   def self.run_expression(expr, bindings)
     # Modify method's names to avoid
     # errors on Ruby syntax.
-    expr.gsub!(/\bor\b/, 'orOp')
-    expr.gsub!(/\bmaybe\b/, 'maybeOp')
+    expr.gsub!(/\b[Oo]r\b/, 'orOp')
+    expr.gsub!(/\b[Mm]aybe\b/, 'maybeOp')
 
     expr =  load_definitions(bindings) + expr
 
