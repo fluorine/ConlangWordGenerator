@@ -31,6 +31,7 @@ begin
 
   # Produce output file
   IO.write(filename + "-output.txt", words.join("\n"))
+  puts "  '#{filename + "-output.txt"}' file has been produced."
 rescue
   puts USAGE
 end
