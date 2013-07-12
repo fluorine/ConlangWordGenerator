@@ -6,8 +6,12 @@ TODO
 
 Implemented features
 ====================
- * Maybe(A) operator (no weight is requiered,
+ * `Maybe(A)` operator (no weight is requiered,
    default probability is 50)
- * Or(A, b) operator (no wight is requiered,
+ * `Or(A, b)` operator (no wight is requiered,
    default probability is 50)
- * Published as a Ruby gem
+ * Released as a Ruby gem
+ * An executable in `\bin` has been included.
+   See [README.md](README.md) to see
+   documentation about how to use this gem
+   as a command line utility.

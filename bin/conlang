@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+
+# This script allows the 'conlang' gem
+# to be used as a command line utility.
+
+# Instructions for usage
+USAGE = "   Usage:\n     conlang <words count> '<LANG file>'\n\n" +
+        "   See documentation for more information in README at\n" +
+        "     https://github.com/fluorine/ConlangWordGenerator"
+
+# If incorrect quantity of arguments
+if ARGV.length != 2 && ARGV[0] !~ /d+/ && ARGV[1] !~ /\.lang$/
+  p "argv"
+  puts USAGE
+  exit
+end
+
+# Import gem
+require 'conlang'
+
+# Use conlang gem as an utility and
+# show instructions if an error occurs
+begin
+  # Parse arguments
+  words_qty = ARGV[0].to_i
+  filename  = ARGV[1].split(".")[0]
+
+  # Generate words
+  generator = WordGenerator.new(filename + ".lang")
+  words     = generator.get_words(words_qty)
+
+  # Produce output file
+  IO.write(filename + "-output.txt", words.join("\n"))
+rescue
+  puts USAGE
+end

@@ -17,16 +17,24 @@ described language.
 
 Instructions
 ------------
-Usage:
+Usage as **command line executable**:
+
+	conlang <words count> '<LANG file>'
+
+This command produces an `output-<name>.txt`
+file that includes a list of the generated words,
+separated by newlines.
+
+Usage as **gem**:
 
 	require 'conlang'
 
 	# Path to LANG file, as constructor.
-	 x = WordGenerator.new("tokipona.lang")
+	x = WordGenerator.new("tokipona.lang")
 
 	# Print ten generated words as
 	# an array of strings.
-	 p x.get_words(10)
+	p x.get_words(10)
 
 
 There are `*.lang` files as examples at `lang-examples` 
