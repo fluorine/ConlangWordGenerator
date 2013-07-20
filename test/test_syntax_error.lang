@@ -1,0 +1,18 @@
+# Thest LANG file for MAYBE operators.
+
+symbols for a vowel:
+   a: 50
+   o: 50
+
+########ERROR##########
+maybe(vowel)
+#######################
+
+symbols for any constant:
+   p: 33
+   t: 33
+   k: 33      
+
+expression:
+# Pattern: /^[ptk]*[ao]*$/
+   Maybe(constant) + maybe(10, vowel)

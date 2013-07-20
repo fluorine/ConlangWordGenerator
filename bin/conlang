@@ -10,7 +10,6 @@ USAGE = "   Usage:\n     conlang <words count> '<LANG file>'\n\n" +
 
 # If incorrect quantity of arguments
 if ARGV.length != 2 && ARGV[0] !~ /d+/ && ARGV[1] !~ /\.lang$/
-  p "argv"
   puts USAGE
   exit
 end
@@ -23,15 +22,27 @@ require 'conlang'
 begin
   # Parse arguments
   words_qty = ARGV[0].to_i
-  filename  = ARGV[1].split(".")[0]
+  filename  = ARGV[1]
+  name      = filename.split(".")[0]
 
   # Generate words
-  generator = WordGenerator.new(filename + ".lang")
+  generator = WordGenerator.new(filename)
   words     = generator.get_words(words_qty)
 
   # Produce output file
-  IO.write(filename + "-output.txt", words.join("\n"))
-  puts "  '#{filename + "-output.txt"}' file has been produced."
-rescue
+  IO.write(name + "-output.txt", words.join("\n"))
+  puts "  '#{name}-output.txt' file has been produced."
+  
+rescue LangFileIOError => e
+  puts e.inspect + "\n"
   puts USAGE
+
+rescue LangFileIOError => e
+  puts e.inspect + "\n"
+  puts USAGE
+
+rescue StandardError => e
+  puts e.inspect + "\n"
+  puts USAGE
+  
 end

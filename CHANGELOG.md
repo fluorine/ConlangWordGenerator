@@ -15,3 +15,7 @@ Implemented features
    See [README.md](README.md) to see
    documentation about how to use this gem
    as a command line utility.
+ * New release (v0.3.0)
+ * Better and more specific Exceptions
+ * More tests, Rake file
+ 

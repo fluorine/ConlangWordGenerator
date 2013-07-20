@@ -12,7 +12,8 @@ module ConlangWordGenerator
     # Add new symbol with its probability into the set
     def add_pair(symbol, weight)
       unless weight > 0 and weight < 100
-        raise "Weight of symbol '#{symbol}' must be a value between 1 and 99."
+        raise LangSyntaxError, "Weight of symbol '#{symbol}' must be " +
+                               "a value between 1 and 99, inclusive."
       end
 
       # Insert new pair in the sorted array of pairs

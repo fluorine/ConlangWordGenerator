@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 # Operators for .lang grammatical expressions.
 #   - maybe(weight, symbolset)
 #       The symbolset may appear or not (empty string),
@@ -21,8 +23,8 @@ module ConlangWordGenerator
   class Or
     def initialize(weight, setA, setB)
       unless weight > 0 and weight < 100
-        raise "Error: Weight for an or() operator " +
-              "must be between 1 and 100 (exclusive)."
+        raise LangSyntaxError, "Weight for an or() operator must " +
+                               "be between 1 and 100 (exclusive)."
       end
 
       @weight = weight
@@ -64,8 +66,8 @@ module ConlangWordGenerator
   class Maybe
     def initialize(weight, set)
       unless weight > 0 and weight < 100
-        raise "Error: Weight for an maybe() operator " +
-              "must be between 1 and 100 (exclusive)."
+        raise LangSyntaxError, "Weight for an maybe() operator " +
+                               "must be between 1 and 100 (exclusive)."
       end
 
       @weight = weight
@@ -95,7 +97,7 @@ module ConlangWordGenerator
     elsif args.length == 3
       Or.new(args[0].to_i, args[1], args[2])
     else
-      raise "Error evaluating an Or() expression."
+      raise LangSyntaxError, "Invalid Or() operator arguments."
     end
   end
 
@@ -105,7 +107,7 @@ module ConlangWordGenerator
     elsif args.length == 2
       Maybe.new(args[0].to_i, args[1])
     else
-      raise "Error evaluating Maybe() expression."
+      raise LangSyntaxError, "Invalid Maybe() operator arguments."
     end
   end
 
@@ -132,6 +134,11 @@ module ConlangWordGenerator
 
     # Evaluate all generated assigments
     # and then the grammatical expression.
-    eval(expr)
+    begin
+      eval(expr)
+    rescue
+      raise LangSyntaxError, "Invalid operators or bindings " +
+                             "in grammatical expression."
+    end
   end
 end

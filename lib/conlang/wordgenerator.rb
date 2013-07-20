@@ -1,11 +1,9 @@
 #!/usr/bin/env ruby
 
-#require 'lib/symbolset.rb'
-
 #
 # This Ruby class generates random words using 
 # prabability-weighted symbols, and grammar rules
-# from a given .lang file as input.
+# from a given *.lang file as input.
 # 
 
 class WordGenerator
@@ -13,12 +11,14 @@ class WordGenerator
   def initialize(file)
     # Check file extension.
     unless file.match(/.*\.lang/)
-      raise "Given file, \"#{file}\", is not a .lang file." 
+      raise LangFileIOError,
+            "Given file, \"#{file}\", is not a .lang file." 
     end
 
     # Check if files exist
     unless File.exist?(file)
-      raise "File \"#{file}\" was not found." 
+      raise LangFileIOError,
+            "File \"#{file}\" was not found." 
     end
 
     #   #   #   #   #   #   #   #   #
@@ -75,8 +75,8 @@ class WordGenerator
             # Copying expression
             @full_expression += line.strip
           else
-            raise "Runtime error when evaluating " +
-                  "\"#{@lang_file}\" at line #{lines_count}."
+            raise LangSyntaxError, "Runtime error when evaluating " +
+                                   "\"#{@lang_file}\" at line #{lines_count}."
           end
         end
 
@@ -89,7 +89,8 @@ class WordGenerator
   # This method evaluates the grammatical expression
   # and then generate random words.
   def eval_expression
-    @evaluated_expression = ConlangWordGenerator::run_expression(@full_expression, @bindings)
+    @evaluated_expression =
+       ConlangWordGenerator::run_expression(@full_expression, @bindings)
   end
 
   # This method generates words
