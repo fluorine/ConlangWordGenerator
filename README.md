@@ -36,7 +36,6 @@ Usage as a **gem**:
 	# an array of strings.
 	p x.get_words(10)
 
-
 There are `*.lang` files as examples at `lang-examples` 
 directory of this [project's source](https://github.com/fluorine/ConlangWordGenerator).
 
@@ -46,8 +45,8 @@ You must create your own .lang files to generate random
 words for your constructed languages.
 
 There files include a simple lightweight markup language
-to describe sets of phonemes, their probability, and a 
-simple regular grammatical expression.
+to describe sets of phonemes, their probability, replacements
+(for exceptions) and a simple regular grammatical expression.
 
 You can learn how to create LANG files [**here**](LANG_FILES_DOC.md).
 Again, examples at `lang-examples` directory can help you a lot.

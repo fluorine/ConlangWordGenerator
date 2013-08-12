@@ -41,6 +41,21 @@ A phoneme's statistical weight gives
 a priority to the symbol. It must be an
 integer greater than 0 and less than 100.
 
+Replacements
+------------
+Replacements are a way to add exceptions, so they are
+simple ways to avoid complicated expressions.
+
+All replacements are applied at the level of each word
+in order.
+
+	replacements:
+		a: aj
+		ew: ej
+
+The previous replacements would convert
+words like `vakew` to `vajkej`.
+
 Expression and operators
 ------------------------
 Each LANG file has an expression at the end.

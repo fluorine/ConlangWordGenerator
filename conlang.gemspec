@@ -4,9 +4,10 @@ require './lib/conlang/version.rb'
 Gem::Specification.new do |s|
   s.name        = 'conlang'
   s.version     = ConlangWordGenerator::VERSION
-  s.summary     = "Full name: ConlangWordGenerator. A statistical random words generator for constructed languages."
-  s.description = "This gem takes constructed grammar and phonemes from a LANG file to generate random words. " +
-                  "You can learn how to create LANG files, or explore some sample files, at this project's " +
+  s.summary     = "ConlangWordGenerator. A statistical random word generator for regular grammars."
+  s.description = "This gem allow users to generate random words. The user must provide " +
+                  "a LANG file with defined phonemes and a regular grammatical expression. " +
+                  "You can learn how to create LANG files, or explore some examples, at this project's " +
                   "source repository on Github: https://github.com/fluorine/ConlangWordGenerator"
   s.authors     = ["Joseph"]
   s.email       = "fluorine@github.com"
