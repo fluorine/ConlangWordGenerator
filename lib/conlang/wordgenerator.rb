@@ -31,6 +31,9 @@ class WordGenerator
     @bindings = {}
     @full_expression = ""
 
+    # Bindings for replacements
+    @replacements = {}
+
     # Parse .lang file
     parse_lang_file
 
@@ -46,7 +49,7 @@ class WordGenerator
     # its full grammatical expression.
     File.open(@lang_file, "r:UTF-8") do |file|
       lines_count = 1
-      on_expression = false
+      current = :none
 
       # Evaluating lines
       while (line = file.gets)
@@ -60,18 +63,24 @@ class WordGenerator
           captured = line.scan(/\s*(\w+)\s*:/)
           current_binding = captured[0][0]
           @bindings[current_binding] = ConlangWordGenerator::SymbolSet.new
+          current = :symbols
 
         when /^\s*expression\s*:\s*(#.*)?$/
           # Start of grammatical expression
           #puts "Evaluating expression:"
-          on_expression = true
+          current = :expression
 
-        when /^\s*(\S+)\s*[:=]\s*(\d*)\s*(#.*)?$/
-          # Add a symbol to the current SymbolSet's binding
-          @bindings[current_binding].add_pair($1, $2.to_i)
+        when /^\s*(\S+)\s*[:=]\s*(\w+)\s*(#.*)?$/
+          if current == :symbols
+            #Add a symbol to the current SymbolSet's binding
+            @bindings[current_binding].add_pair($1, $2.to_i)
+          else
+            raise LangSyntaxError, "Runtime error when evaluating " +
+                                   "\"#{@lang_file}\" at binding line #{lines_count}."
+          end
 
         else
-          if on_expression
+          if current == :expression
             # Copying expression
             @full_expression += line.strip
           else
