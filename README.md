@@ -1,5 +1,5 @@
-ConlangWordGenerator, v0.3.0
-=================================
+ConlangWordGenerator, v0.3.1
+============================
 **Now it's a gem!**
 
 Description
