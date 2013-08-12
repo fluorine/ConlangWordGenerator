@@ -7,7 +7,7 @@ symbols for a vowel:
 symbols for any constant:
    p: 33
    t: 33
-   k: 33
+   k: 33      
 
 replacements:
 	p: b

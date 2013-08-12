@@ -40,7 +40,10 @@ module ConlangWordGenerator
       accum = 0
       @pairs.each_index do |index|
         accum += @pairs[index][1]
-        return @pairs[index][0] if accum > random
+
+        if accum > random
+          return @pairs[index][0]
+        end
       end
     end
 

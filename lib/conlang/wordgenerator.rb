@@ -67,18 +67,24 @@ class WordGenerator
 
         when /^\s*expression\s*:\s*(#.*)?$/
           # Start of grammatical expression
-          #puts "Evaluating expression:"
           current = :expression
 
-        when /^\s*(\S+)\s*[:=]\s*(\w+)\s*(#.*)?$/
-          if current == :symbols
+        when /^\s*replacements\s*:\s*(#.*)?$/
+          # Start of list of replacements
+          current = :replacements
+
+        when /^\s*(\S+)\s*[:=]\s*(\S+)\s*(#.*)?$/
+          # Add bindings
+          case current
+          when :symbols
             #Add a symbol to the current SymbolSet's binding
             @bindings[current_binding].add_pair($1, $2.to_i)
+          when :replacements
+            @replacements[$1] = $2
           else
             raise LangSyntaxError, "Runtime error when evaluating " +
                                    "\"#{@lang_file}\" at binding line #{lines_count}."
           end
-
         else
           if current == :expression
             # Copying expression
@@ -109,9 +115,18 @@ class WordGenerator
     words = []
 
     qty.times do
-      words += [@evaluated_expression.sample]
+      words += [apply_replacements(@evaluated_expression.sample)]
     end 
 
     words
+  end
+
+  # Apply replacements to words
+  def apply_replacements(word)
+    @replacements.each do |pattern, target|
+      word.gsub!(pattern, target)
+    end
+    
+    word
   end
 end

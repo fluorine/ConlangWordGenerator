@@ -43,4 +43,14 @@ class TestWordGenerator < Test::Unit::TestCase
       assert_match(/^[ptk]*[ao]*$/, word)
     end
   end
+
+  #
+  # Test replacements
+  #
+  def test_replacements
+    words = WordGenerator.new(Dir.pwd + "/test/test_file_replacements.lang").get_words(10)
+    words.each do |word|
+      assert_match(/^[aobdg][ao]$/, word)
+    end
+  end
 end
